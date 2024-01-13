@@ -5,6 +5,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 // Routers
 import jobRouter from "./routes/jobRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 // Middlewares
 import globalErrorHandlerMiddleware from "./middleware/globalErrorHandlerMiddleware.js";
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/auth", userRouter);
 
 app.use("*", (req, res) => {
   res
@@ -32,13 +34,14 @@ app.use("*", (req, res) => {
 app.use(globalErrorHandlerMiddleware);
 
 const port = process.env.PORT || 5100;
-
 try {
+  // # Sometimes there are connection issues to DB due to connection string
+
   await mongoose.connect(process.env.DATABASE);
   app.listen(port, () => {
     console.log(`Database connected & server is running on PORT ${port}... 🔑`);
   });
 } catch (err) {
-  console.log(console.log(err));
-  process.getMaxListeners(1);
+  console.log(err);
+  process.exist(1);
 }
