@@ -3,9 +3,11 @@ import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
-
 // Routers
 import jobRouter from "./routes/jobRoutes.js";
+
+// Middlewares
+import globalErrorHandlerMiddleware from "./middleware/globalErrorHandlerMiddleware.js";
 
 const app = express();
 
@@ -15,6 +17,10 @@ if (process.env.NODE_ENVIRONMENT === "development") {
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("HELLO WORLD 👋");
+});
+
 app.use("/api/v1/jobs", jobRouter);
 
 app.use("*", (req, res) => {
@@ -23,10 +29,7 @@ app.use("*", (req, res) => {
     .json({ msg: `Can't find ${req.originalUrl} on this server!` });
 });
 
-app.use((err, req, res, next) => {
-  console.log(err.message);
-  res.status(500).json({ msg: "Something went wrong" });
-});
+app.use(globalErrorHandlerMiddleware);
 
 const port = process.env.PORT || 5100;
 
