@@ -1,13 +1,17 @@
 import { Router } from "express";
-import { login, register } from "../controllers/authController.js";
 import {
-  validateLoginInput,
-  validateRegisterInput,
-} from "../middleware/validationMiddleware.js";
+  getApplicationStats,
+  getCurrentUser,
+  updateUser,
+} from "../controllers/userController.js";
+import { authenticateUser } from "../middleware/authMiddleware.js";
 
 const router = Router();
 
-router.post("/register", validateRegisterInput, register);
-router.post("/login", validateLoginInput, login);
+router.use(authenticateUser);
+// Authenticate if user is logged in.
+router.get("/current-user", getCurrentUser);
+router.get("/admin/app-stats", getApplicationStats);
+router.patch("/update-user", updateUser);
 
 export default router;

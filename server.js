@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 // Routers
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import authRouter from "./routes/authRoutes.js";
 
 // Middlewares
 import globalErrorHandlerMiddleware from "./middleware/globalErrorHandlerMiddleware.js";
@@ -26,7 +27,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/jobs", jobRouter);
-app.use("/api/v1/auth", userRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/auth", authRouter);
 
 app.use("*", (req, res) => {
   res

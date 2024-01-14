@@ -2,8 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import Job from "../models/jobModel.js";
 
 export async function getAllJobs(req, res) {
-  console.log(req.user);
-  const jobs = await Job.find({});
+  const jobs = await Job.find({ createdBy: req.user.userId });
   res.status(StatusCodes.OK).json({
     results: jobs.length,
     data: jobs,
@@ -11,6 +10,7 @@ export async function getAllJobs(req, res) {
 }
 
 export async function createJob(req, res) {
+  req.body.createdBy = req.user.userId;
   const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({
     data: job,

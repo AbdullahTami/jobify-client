@@ -21,13 +21,22 @@ export async function login(req, res) {
     throw new UnauthenticatedError("invalid credentials");
   }
 
-  // const token = createJWT(user.id);
   const token = createJWT({ userId: user._id, role: user.role });
+
   const oneDay = 1000 * 60 * 60 * 24;
+
   res.cookie("JWT", token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === "production",
   });
   res.status(StatusCodes.OK).json({ msg: "user logged in" });
+}
+
+export function logout(req, res) {
+  res.cookie("JWT", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.status(StatusCodes.OK).json({ msg: "user logged out" });
 }
