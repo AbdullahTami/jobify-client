@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
 });
+// userSchema.methods.showMe = function () {
+//   let obj = this.toObject();
+//   delete obj.lastName;
+//   console.log(obj);
+//   return obj;
+// };
 const User = mongoose.model("User", userSchema);
 
 export default User;
