@@ -44,6 +44,7 @@ export async function action({ request }) {
 
   try {
     await customFetch.post("auth/register", data);
+    console.log("beee");
     toast.success("Registration successful");
     return redirect("/login");
   } catch (error) {
