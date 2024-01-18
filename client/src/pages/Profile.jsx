@@ -1,13 +1,11 @@
 import Wrapper from "../assets/wrappers/DashboardFormPage";
-import { Form, useNavigation, useOutletContext } from "react-router-dom";
-import { FormRow } from "../components";
+import { Form, useOutletContext } from "react-router-dom";
+import { FormRow, SubmitBtn } from "../components";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 
 function Profile() {
   const { currentUser } = useOutletContext();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Wrapper>
@@ -39,13 +37,7 @@ function Profile() {
             defaultValue={currentUser.location}
           />
         </div>
-        <button
-          className="btn btn-block form-btn"
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "submitting..." : "submit"}
-        </button>
+        <SubmitBtn formBtn />
       </Form>
     </Wrapper>
   );
