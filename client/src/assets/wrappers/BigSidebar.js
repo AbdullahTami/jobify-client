@@ -57,6 +57,9 @@ const Wrapper = styled.aside`
       color: var(--primary-500);
       padding-left: 3rem;
     }
+    .pending {
+      background: var(--background-color);
+    }
   }
 `;
 

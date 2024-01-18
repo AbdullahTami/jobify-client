@@ -22,10 +22,12 @@ const Wrapper = styled.div`
     text-align: center;
     border-radius: var(--border-radius);
     visibility: hidden;
+    height: 0;
     background: var(--primary-500);
   }
   .show-dropdown {
     visibility: visible;
+    height: fit-content;
   }
 
   .dropdown-btn {

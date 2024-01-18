@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--background-secondary-color);
@@ -41,6 +41,7 @@ const Wrapper = styled.article`
     padding: 1rem 1.5rem;
   }
   .content-center {
+    /* padding: 0 2rem; */
     display: grid;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
@@ -61,20 +62,20 @@ const Wrapper = styled.article`
     display: grid;
     align-items: center;
   }
+
   .actions {
     margin-top: 1rem;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
   }
+
   .edit-btn,
   .delete-btn {
     height: 30px;
     font-size: 0.85rem;
     display: flex;
     align-items: center;
-  }
-  .edit-btn {
-    margin-right: 0.5rem;
   }
 `;
 

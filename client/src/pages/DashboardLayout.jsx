@@ -12,7 +12,6 @@ function DashboardLayout() {
   const navigate = useNavigate();
 
   const { currentUser } = useLoaderData();
-  const { name } = currentUser;
 
   // Temp
 
@@ -45,7 +44,7 @@ function DashboardLayout() {
   return (
     <DashboardContext.Provider
       value={{
-        user: name,
+        currentUser,
         showSidebar,
         toggleDarkTheme,
         toggleSidebar,
@@ -60,7 +59,7 @@ function DashboardLayout() {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet />
+              <Outlet context={{ currentUser }} />
             </div>
           </div>
         </main>

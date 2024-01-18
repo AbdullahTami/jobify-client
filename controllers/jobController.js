@@ -23,7 +23,7 @@ export async function getJob(req, res) {
 }
 
 export async function editJob(req, res) {
-  const job = Job.findByIdAndUpdate(req.params.id, req.body, {
+  const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
   res.status(StatusCodes.OK).json({ msg: "Job modified", job });
