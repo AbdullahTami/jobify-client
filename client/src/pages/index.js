@@ -1,6 +1,5 @@
 export { default as DashboardLayout } from "./DashboardLayout";
 export { default as AddJob } from "./AddJob";
-export { default as DeleteJob } from "./DeleteJob";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as EditJob } from "./EditJob";
 export { default as Admin } from "./Admin";
