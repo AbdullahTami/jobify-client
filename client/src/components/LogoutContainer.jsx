@@ -14,7 +14,12 @@ function LogoutContainer() {
         type="button"
         onClick={() => setShowLogout((show) => !show)}
       >
-        <FaUserCircle />
+        {currentUser.avatar ? (
+          <img src={currentUser.avatar} alt="avatar" className="img" />
+        ) : (
+          <FaUserCircle />
+        )}
+
         {currentUser.name}
         <FaCaretDown />
       </button>
