@@ -10,17 +10,23 @@ import {
   validateJobInput,
   validateIdParam,
 } from "../middleware/validationMiddleware.js";
-import { authenticateUser } from "../middleware/authMiddleware.js";
+import {
+  authenticateUser,
+  checkForTestUser,
+} from "../middleware/authMiddleware.js";
 
 const router = Router();
 
 router.use(authenticateUser);
 
-router.route("/").get(getAllJobs).post(validateJobInput, createJob);
+router
+  .route("/")
+  .get(getAllJobs)
+  .post(checkForTestUser, validateJobInput, createJob);
 router
   .route("/:id")
   .get(validateIdParam, getJob)
-  .patch(validateIdParam, validateJobInput, editJob)
-  .delete(validateIdParam, deleteJob);
+  .patch(checkForTestUser, validateIdParam, validateJobInput, editJob)
+  .delete(checkForTestUser, validateIdParam, deleteJob);
 
 export default router;
