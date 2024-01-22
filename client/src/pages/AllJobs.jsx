@@ -21,10 +21,18 @@ export function useAllJobsContext() {
   return useContext(AllJobsContext);
 }
 
-export async function loader() {
+export async function loader({ request }) {
+  console.log(request.url);
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+  // console.log(params);
+
   try {
-    const { data } = await customFetch("/jobs");
-    return data;
+    const { data } = await customFetch("/jobs", {
+      params,
+    });
+    return { data, searchValues: { ...params } };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;

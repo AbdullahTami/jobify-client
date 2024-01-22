@@ -8,7 +8,7 @@ function Job({ job }) {
   const { _id, position, createdAt, company, jobLocation, jobType, jobStatus } =
     job;
   const date = day(createdAt).format("MMM D, YYYY");
-  console.log(date);
+  // console.log(date);
   return (
     <Wrapper>
       <header>

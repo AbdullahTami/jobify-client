@@ -3,7 +3,9 @@ import { useAllJobsContext } from "../pages/AllJobs";
 import Job from "./Job";
 
 function JobsContainer() {
-  const { data } = useAllJobsContext();
+  const {
+    data: { data },
+  } = useAllJobsContext();
   const { data: jobs } = data;
   console.log(jobs);
 
