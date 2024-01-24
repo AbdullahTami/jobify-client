@@ -1,11 +1,6 @@
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 import Wrapper from "../assets/wrappers/PageBtnContainer";
-import {
-  useLocation,
-  Link,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useAllJobsContext } from "../pages/AllJobs";
 
 function PageBtnContainer() {
