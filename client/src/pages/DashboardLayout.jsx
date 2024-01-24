@@ -66,8 +66,12 @@ function DashboardLayout() {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              {isPageLoading ? <Loader /> : <Outlet context={{ user }} />}
-              <Outlet context={{ currentUser }} />
+              {isPageLoading ? (
+                <Loader />
+              ) : (
+                // <Outlet context={{ currentUser }} />
+                <Outlet context={{ currentUser }} />
+              )}
             </div>
           </div>
         </main>
