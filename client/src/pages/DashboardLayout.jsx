@@ -11,13 +11,22 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { checkDefaultTheme } from "../App";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+
+const userQuery = {
+  queryKey: ["user"],
+  queryFn: async () => {
+    const { data } = await customFetch("/users/current-user");
+    return data;
+  },
+};
 
 const DashboardContext = createContext();
 
-function DashboardLayout() {
+function DashboardLayout({ queryClient }) {
   const navigate = useNavigate();
 
-  const { currentUser } = useLoaderData();
+  const { currentUser } = useQuery(userQuery).data;
 
   const navigation = useNavigation();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -36,6 +45,7 @@ function DashboardLayout() {
   async function logoutUser() {
     await customFetch("/auth/logout");
     navigate("/");
+    queryClient.invalidateQueries();
     toast.success("User successfully logged out");
     console.log("logout user");
   }
@@ -85,13 +95,12 @@ export function useDashboardContext() {
   return context;
 }
 
-export async function loader() {
+export const loader = (queryClient) => async () => {
   try {
-    const { data } = await customFetch("/users/current-user");
-    return data;
+    return await queryClient.ensureQueryData(userQuery);
   } catch (error) {
     return redirect("/");
   }
-}
+};
 
 export default DashboardLayout;
