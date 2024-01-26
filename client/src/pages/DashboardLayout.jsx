@@ -49,6 +49,23 @@ function DashboardLayout({ queryClient }) {
     toast.success("User successfully logged out");
     console.log("logout user");
   }
+  const [isAuthError, setIsAuthError] = useState(false);
+
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error?.response?.status === 401) {
+        setIsAuthError(true);
+      }
+      return Promise.reject(error);
+    }
+  );
+  useEffect(() => {
+    if (!isAuthError) return;
+    logoutUser();
+  }, [isAuthError]);
 
   useEffect(
     function () {

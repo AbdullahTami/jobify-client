@@ -5,12 +5,11 @@ import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
 import { useAllJobsContext } from "../pages/AllJobs";
 
 function SearchContainer() {
-  const {
-    data: { searchValues },
-  } = useAllJobsContext();
+  const { searchValues } = useAllJobsContext();
+  // console.log(data);
 
   const { search, jobStatus, jobType, sort } = searchValues;
-  console.log(searchValues);
+  // console.log(searchValues);
   const submit = useSubmit();
 
   function debounce(onChange) {

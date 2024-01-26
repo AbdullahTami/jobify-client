@@ -4,10 +4,8 @@ import Job from "./Job";
 import PageBtnContainer from "./PageBtnContainer";
 
 function JobsContainer() {
-  const {
-    data: { data },
-  } = useAllJobsContext();
-  console.log(data);
+  const { data } = useAllJobsContext();
+  // console.log(data);
 
   const { data: jobs, results, numOfPages } = data;
 

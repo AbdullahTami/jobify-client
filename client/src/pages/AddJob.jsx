@@ -38,17 +38,20 @@ function AddJob() {
   );
 }
 
-export async function action({ request }) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  console.log(data);
-  try {
-    await customFetch.post("/jobs", data);
-    toast.success("job successfully added");
-    return redirect("all-jobs");
-  } catch (error) {
-    return error;
-  }
-}
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    try {
+      await customFetch.post("/jobs", data);
+      queryClient.invalidateQueries(["jobs"]);
+      toast.success("job successfully added");
+      return redirect("all-jobs");
+    } catch (error) {
+      return error;
+    }
+  };
 
 export default AddJob;
