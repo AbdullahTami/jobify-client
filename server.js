@@ -5,6 +5,8 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
 
 // Routers
 import jobRouter from "./routes/jobRoutes.js";
@@ -36,14 +38,8 @@ if (process.env.NODE_ENVIRONMENT === "development") {
 app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(cookieParser());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("HELLO WORLD 👋");
-});
-
-app.get("/api/v1/test", (req, res) => {
-  res.json({ msg: "test route" });
-});
+app.use(helmet());
+app.use(mongoSanitize());
 
 app.use("/api/v1/jobs", jobRouter);
 app.use("/api/v1/users", userRouter);
