@@ -26,16 +26,16 @@ function Login() {
       <Form className="form" method="post">
         <Logo />
         <h4>Login</h4>
-        <FormRow type="email" name="email" defaultValue="abdullah@gmail.com" />
+        <FormRow type="email" name="email" defaultValue="explore@gmail.com" />
         <FormRow type="password" name="password" defaultValue="test1234" />
         <SubmitBtn />
-        <button
+        {/* <button
           type="button"
           className="btn btn-block"
           onClick={loggingDemoUser}
         >
           explore the app
-        </button>
+        </button> */}
         <p>
           Not a member yet?
           <Link to="/register" className="member-btn">

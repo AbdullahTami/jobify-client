@@ -11,16 +11,16 @@ function Register() {
       <Form method="post" className="form">
         <Logo />
         <h4>Register</h4>
-        <FormRow defaultValue="Abdullah" type="text" name="name" />
+        <FormRow placeholder="First name" type="text" name="name" />
         <FormRow
-          defaultValue="Tami"
+          placeholder="Last name"
           type="text"
           name="lastName"
           labelText="last name"
         />
-        <FormRow defaultValue="Riyadh" type="text" name="location" />
-        <FormRow defaultValue="abdullah@gmail.com" type="email" name="email" />
-        <FormRow defaultValue="test1234" type="password" name="password" />
+        <FormRow placeholder="Riyadh" type="text" name="location" />
+        <FormRow type="email" name="email" placeholder="demo@gmail.com" />
+        <FormRow type="password" placeholder="******" name="password" />
         <SubmitBtn />
         <p>
           Already a member?
@@ -39,7 +39,6 @@ export async function action({ request }) {
 
   try {
     await customFetch.post("auth/register", data);
-    console.log("beee");
     toast.success("Registration successful");
     return redirect("/login");
   } catch (error) {
