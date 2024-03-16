@@ -5,9 +5,9 @@ import PageBtnContainer from "./PageBtnContainer";
 
 function JobsContainer() {
   const { data } = useAllJobsContext();
-  // console.log(data);
 
   const { data: jobs, results, numOfPages } = data;
+  // console.log(jobs, results, numOfPages);
 
   if (jobs.length === 0) {
     return (
