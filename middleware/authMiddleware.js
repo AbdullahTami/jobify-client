@@ -7,7 +7,7 @@ import { verifyJWT } from "../utils/tokenUtils.js";
 
 export function authenticateUser(req, res, next) {
   const { JWT } = req.cookies;
-  console.log("AUTH MIDDLEWARE COOKIE LOG 👋", JWT);
+  // console.log("AUTH MIDDLEWARE COOKIE LOG 👋", JWT);
   if (!JWT) throw new UnauthenticatedError("authentication invalid");
 
   try {
