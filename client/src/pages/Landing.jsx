@@ -16,9 +16,9 @@ function Landing() {
             job <span>tracking</span> app
           </h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus
-            voluptate eligendi mollitia deleniti fuga repudiandae nesciunt
-            dolore a obcaecati eveniet!
+            Are you tired of juggling multiple job applications, interviews, and
+            follow-ups? Look no further! Jobify is your all-in-one solution for
+            managing your job search journey.
           </p>
           <Link to="/register" className="btn register-link">
             Register
